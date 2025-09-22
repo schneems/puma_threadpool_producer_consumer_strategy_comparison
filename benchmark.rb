@@ -298,9 +298,11 @@ if __FILE__ == $0
     thread_count: 3,
     fibonacci_number: 5, # Calculate the fibonacci number of this input
     work_count: 10_000, # Do it this many times
-    io_percentage: 0.01, # 0.01 is 1% of time spent doing IO
+    io_percentage: 0.1, # 0.01 is 1% of time spent doing IO
     # Take care, if you make this too large then you're starving the consumers and you're measuring time to enqueue work instead of complete it.
-    producer_sleep_percent: 0.0,
+    # Set to zero to simulate all requests coming up front. Set to a higher number to sleep a little between requests. Sleep value
+    # is proportional to calculated sleep time of consumers
+    producer_sleep_percent: 0.01,
     runs: 70  # When perf is close, we need more runs to prove statistical significance
   )
   benchmark.run_benchmark
